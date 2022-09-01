@@ -1,1 +1,43 @@
-/* TODO: Make it awesome */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px;
+    background-color: aquamarine;
+    /* outline: 1px solid black; */
+    width: 500px;
+}
+h1 {
+    /* display: block; */
+    font-size: 20px;
+    padding-bottom: 10px;
+    
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 100px;
+}
+/* li {
+    padding: 100px; */
+
+.card {
+    font-size: 20px;
+}
+
+body {
+    display: flex;
+    align-items: stretch;
+    width: 1000px;
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content: space-around;
+    border-style: outset ;
+    outline: 1px solid black;
+}
+
+footer {
+
+}
