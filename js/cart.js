@@ -20,7 +20,7 @@ function renderCart() {
 
 // TODO: Remove all of the rows (tr) in the cart table (tbody)
 function clearCart() {
-  let tableBody = document.getElementsByTagName('tbody');
+  let tableBody = document.querySelector('tbody');
   tableBody.innerHTML = '';
 }
 
@@ -29,7 +29,7 @@ function clearCart() {
 function showCart() {
 
 // TODO: Find the table body
-  let tableBody = document.getElementsByTagName('tbody');
+  let tableBody = document.querySelector('tbody');
 
 // TODO: Iterate over the items in the cart
   for (let i = 0; i < cart.items.length; i++) {
@@ -37,30 +37,35 @@ function showCart() {
     let tableRow = document.createElement('tr');
 // TODO: Create a TD for the delete link, quantity,  and the item
     let tableDelete = document.createElement('td');
-    let tableQuantity = document.createElement('td');
-    let tableItem = document.createElement('td');
-
     tableDelete.textContent = 'X';
-    tableDelete.id = 'deleteId';
-// TODO: Add the TR to the TBODY and each of the TD's to the TR
+    tableDelete.classList.add('delete');
+    tableDelete.id = i;
     tableRow.appendChild(tableDelete);
+
+    let tableQuantity = document.createElement('td');
+    tableQuantity.textContent = cart.items[i].quantity;
     tableRow.appendChild(tableQuantity);
+
+    let tableItem = document.createElement('td');
+    tableItem.textContent = cart.items[i].product;
     tableRow.appendChild(tableItem);
+
+// TODO: Add the TR to the TBODY and each of the TD's to the TR
     tableBody.appendChild(tableRow);
   }
 }
 
 function removeItemFromCart(event) {
-  if (event.target.id === 'deleteId') {
-    console.log('itworks');
-  }
-
-  // cart.removeItem(event)
   // TODO: When a delete link is clicked, use cart.removeItem to remove the correct item
-  // TODO: Save the cart back to local storage
-  // TODO: Re-draw the cart table
-
+  event.preventDefault();
+  if (event.target.classList.contains('delete')) {
+    cart.removeItem(parseInt(event.target.id));
+    cart.saveToLocalStorage();
+    renderCart();
+  }
 }
+// TODO: Save the cart back to local storage
+// TODO: Re-draw the cart table
 
 // This will initialize the page and draw the cart on screen
 renderCart();
